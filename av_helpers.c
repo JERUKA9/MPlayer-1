@@ -110,6 +110,7 @@ void init_avformat(void)
         show_av_version(MSGT_DEMUX, "libavformat", LIBAVFORMAT_VERSION_INT,
                         avformat_version(), avformat_configuration());
         av_register_all();
+        avformat_network_init();
         avformat_initialized = 1;
         av_log_set_callback(mp_msp_av_log_callback);
     }
