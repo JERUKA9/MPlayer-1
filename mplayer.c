@@ -3094,7 +3094,8 @@ int main(int argc, char *argv[])
     // fatal errors:
     signal(SIGBUS, exit_sighandler); // bus error
 #ifndef __WINE__                      // hack: the Wine executable will crash else
-    signal(SIGSEGV, exit_sighandler); // segfault
+    if (!IsDebuggerPresent())
+        signal(SIGSEGV, exit_sighandler); // segfault
 #endif
     signal(SIGILL, exit_sighandler); // illegal instruction
     signal(SIGFPE, exit_sighandler); // floating point exc.
